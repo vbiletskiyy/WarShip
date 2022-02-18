@@ -3,5 +3,5 @@ class Board < ApplicationRecord
     has_many :shots
     belongs_to :user
     belongs_to :game
-    has_namy :cells
+    has_many :cells
 end
