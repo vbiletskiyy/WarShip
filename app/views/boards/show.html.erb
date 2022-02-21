@@ -3,7 +3,7 @@
   <br>
   <div class="center">
     <% if @number.length >= 7 %>
-      <%= form_for @game, :url => game_cells_path(@game.id), :method => "get" do |f| %>
+      <%= form_for @game, :url => game_path(@game.id), :method => "get" do |f| %>
         <% f.hidden_field :game_id, :value => @game.id %>
         <%= f.submit "Start!" %>
       <% end %>
@@ -39,7 +39,7 @@
                   <td><% player_cells = @cells.select{|element| element.y == data_y}.select{|element| element.x == data_x} %>
                     <% if player_cells[0].ship %>
                       <!-- IF SHIP IS PRESENT -->
-                      <%= form_for player_cells, :url => game_path(@game.id), :method => "patch" do |t| %>
+                      <%= form_for player_cells, :url => board_ships_url(@board), :method => "post" do |t| %>
                         <%= t.hidden_field :cell_id, :value => player_cells[0].id %>
                         <% if player_cells[0].ship %>
                           <%= t.hidden_field :ship, :value => false %>
@@ -51,7 +51,7 @@
                       <!-- IF SHIP IS PRESENT -->
                     <%else%>
                       <!-- IF SHIP IS NOT PRESENT -->
-                      <%= form_for player_cells, :url => game_path(@game.id), :method => "patch" do |t| %>
+                      <%= form_for player_cells, :url => board_ships_url(@board), :method => "post" do |t| %>
                         <%= t.hidden_field :cell_id, :value => player_cells[0].id %>
                         <% if player_cells[0].ship %>
                           <%= t.hidden_field :ship, :value => false %>
