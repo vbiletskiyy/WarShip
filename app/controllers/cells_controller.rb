@@ -1,0 +1,3 @@
+class CellsController < ApplicationController
+    
+end

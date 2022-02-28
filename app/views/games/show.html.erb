@@ -1,0 +1,99 @@
+<div class="jumbotron jumbotron1">
+  <h1>Ahoy,<%=@user.name%></h1>
+</div>
+<div class="jumbotron jumbotron2">  <!-- DIV FOR ENTIRE PAGE -->
+  <div class="row">  <!-- DIV FOR ROW 1 -->
+    <%if @player_id = @user.id%>
+      <div class="col-4">  <!-- DIV FOR COL 1 -->
+        <div class="container battleship">  <!-- DIV FOR PLAYER 1 UI -->
+          <h4>PLAYER 1's Ocean <%=@user.name%></h4>
+          <table class="table table-2">  <!-- TABLE FOR PLAYER 1'S GAMEBOARD -->
+            <% data_x = 1 %>
+            <% data_y = 1 %>
+            <thead>
+              <tr>
+                <% letters = '@' %>
+                <th scope="col">X</th>
+                <% 5.times do %> <!-- To change gameboard size -->
+                  <th scope="col"><%=letters.next!%></th>
+                <%end%>
+              </tr>
+            </thead>
+            <% 5.times do %> <!-- To change gameboard size -->
+              <tr>
+                <th class="row-dark" scope="row">
+                  <%= data_y %>
+                </th>
+                <% 5.times do %> <!-- To change gameboard size -->
+                  <td><% player_cells = @cells.select{|element| element.y == data_y}.select{|element| element.x == data_x} %>
+                    <% if player_cells[0].ship && player_cells[0].hit %>
+                      <%= image_tag("REDX.png", :class => "bluefishy")%>
+                    <%end%>
+                    <% if player_cells[0].ship && !player_cells[0].hit %>
+                      <%= image_tag("SHIP.png", :class => "bluefishy")%>
+                    <%end%>
+                    <% if !player_cells[0].ship && player_cells[0].hit %>
+                      <%= image_tag("BLUEFISH.png", :class => "bluefishy")%>
+                    <% end %>
+                    <% if !player_cells[0].ship && !player_cells[0].hit %>
+                      <img src='https://images.pexels.com/photos/261403/pexels-photo-261403.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' style="background-position:center;display:inline-block;cursor:pointer;width:40px;height:40px;">
+                    <%end%>
+                  </td>
+                  <% data_x += 1 %>
+                <%end%>
+                <% data_x = 1 %>
+                <% data_y += 1 %>
+              </tr>
+            <%end%>
+          </table>
+          <!-- TABLE FOR PLAYER 1'S GAMEBOARD -->
+        </div>
+        <!-- DIV FOR PLAYER 1 UI -->
+      </div>
+      <!-- DIV FOR COL 1 -->
+      <div class="col-4">  <!-- DIV FOR COL 2 -->
+        <div class="container battleship">  <!-- DIV FOR PLAYER 2 UI -->
+          <h4>PLAYER 2's Ocean (<%= @comp_name %>)</h4>
+          <table class="table table-2">  <!-- TABLE FOR PLAYER 2'S GAMEBOARD -->
+            <% data_x = 1 %>
+            <% data_y = 1 %>
+            <thead >
+              <tr>
+                <% letters = '@' %>
+                <th scope="col">X</th>
+                <% 5.times do %> <!-- To change gameboard size -->
+                  <th scope="col"><%=letters.next!%></th>
+                <%end%>
+              </tr>
+            </thead>
+            <% 5.times do %> <!-- To change gameboard size -->
+              <tr>
+                <th class="row-dark" scope="row">
+                  <%= data_y %>
+                </th>
+                <% 5.times do %> <!-- To change gameboard size -->
+                  <td><% player_cells = @cells.select{|element| element.y == data_y}.select{|element| element.x == data_x} %>
+                    <% if !player_cells[0].hit %>
+                    <%end%>
+                    <% if player_cells[0].ship && player_cells[0].hit %>
+                      <%= image_tag("REDX.png", :class => "bluefishy")%>
+                    <%end%>
+                    <% if !player_cells[0].ship && player_cells[0].hit %>
+                      <%= image_tag("BLUEFISH.png", :class => "bluefishy")%>
+                    <%end%>
+                  </td>
+                  <% data_x += 1 %>
+                <%end%>
+                <% data_x = 1 %>
+                <% data_y += 1 %>
+              </tr>
+            <%end%>
+          </table>
+          <!-- TABLE FOR PLAYER 2'S GAMEBOARD -->
+        </div>
+        <!-- DIV FOR PLAYER 1 UI -->
+      </div>
+      <!-- DIV FOR COL 2 -->
+    <%end%>
+    <!-- ================DIVIDE BETWEEN P1 AND P2 UI SCREENS==================== -->
+
