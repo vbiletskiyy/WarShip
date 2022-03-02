@@ -73,7 +73,11 @@
                 </th>
                 <% 5.times do %> <!-- To change gameboard size -->
                   <td><% player_cells = @enemy_cells.select{|element| element.y == data_y}.select{|element| element.x == data_x} %>
-                    <% if !player_cells[0].hit %>
+                      <% if !player_cells[0].hit %>
+                    <%= form_for player_cells, :url=> game_shots_url(@game), :method => "post" do |t| %>
+                    <%= t.hidden_field :cell_id, :value => player_cells[0].id %>
+                      <%= t.submit ""%>
+                      <%end%>
                     <%end%>
                     <% if player_cells[0].ship && player_cells[0].hit %>
                       <%= image_tag("REDX.png", :class => "bluefishy")%>
@@ -95,4 +99,4 @@
       </div>
       <!-- DIV FOR COL 2 -->
     <%end%>
-
+    <!-- ================DIVIDE BETWEEN P1 AND P2 UI SCREENS==================== -->
