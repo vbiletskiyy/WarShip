@@ -4,7 +4,7 @@ class GamesController < ApplicationController
   end
 
   def create
-    if @game = Game.where(user: current_user).last
+    if @game = Game.where(user: current_user, finished: false).last
       @board = @game.boards.first
     else
       @game = Game.create(user: current_user)

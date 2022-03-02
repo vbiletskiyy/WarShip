@@ -9,12 +9,4 @@ class Cell < ApplicationRecord
       end
     end
   end
-
-  def self.pick_random
-    7.times() do 
-      d = @enemy_board.cells.where(player: nil, ship: false).order("RANDOM()").first
-      d.ship = true
-      d.save
-    end
-  end
 end
