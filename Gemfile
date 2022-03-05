@@ -10,10 +10,20 @@ gem "rails", "~> 7.0.1"
 gem "sprockets-rails"
 
 gem 'jquery-rails'
+
 gem 'turbolinks'
 
 gem 'faker'
 
+gem 'sass-rails', '~> 5.0'
+
+gem 'bootstrap-sass'
+
+gem 'uglifier', '>= 1.3.0'
+
+gem 'coffee-rails', '~> 4.2'
+
+gem 'uglifier', '>= 1.3.0'
 
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"

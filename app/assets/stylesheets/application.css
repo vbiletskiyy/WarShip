@@ -78,7 +78,7 @@ h1 {
     background: url("https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/pirate-sunset-daniel-eskridge.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    box-align: center;
+    align: center;
     color: white;
     text-shadow: 2px 2px black;
     min-height: 200px;
@@ -150,7 +150,7 @@ tr {
     font-size: 14px;
     margin: 2px;
     padding: 2px;
-    box-align: center;
+    align: center;
     margin-left: auto;
     margin-right: auto;
 }

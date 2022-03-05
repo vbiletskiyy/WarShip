@@ -1,73 +1,72 @@
-<div class="jumbotron jumbotron1">
-  <h1>New Game</h1><br>
+<div class="jumbotron4 button">
   <div class="center">
     <% if @number.length >= 7 %>
       <%= form_for @game, :url => game_path(@game.id), :method => "get" do |f| %>
         <% f.hidden_field :game_id, :value => @game.id %>
-        <%= f.submit "Start!" %>
-      <%end%>
+<button type="submit" name="button">Fight!</button>
+</div>
+      <% end %>
     <%end%>
   </div>
-  <hr>
 </div>
 <% if @number.length < 7 %> <!-- Player ships allowed -->
   <div class="jumbotron">
     <div class="container battleship_placement">
-      <h4>PLAYER 1 place your ships:</h4>
-      <table class="table table-2">
-        <% data_x = 1 %>
-        <% data_y = 1 %>
-        <thead >
-          <tr>
-            <% letters = '@' %>
-            <th scope="col">X</th>
-            <% 5.times do %> <!-- To change gameboard size -->
-              <th scope="col"><%=letters.next!%></th>
-            <%end%>
-          </tr>
-        </thead>
-        <% 5.times do %> <!-- To change gameboard size -->
-          <tr>
-            <th>
-              <%= data_y %>
-            </th>
-            <% 5.times do %> <!-- To change gameboard size -->
-              <td><% player_cells = @cells.select{|element| element.y == data_y}.select{|element| element.x == data_x} %>
-                <% if player_cells[0].ship %>
-                  <!-- IF SHIP IS PRESENT -->
-                  <%= form_for player_cells, :url => board_ships_url(@board), :method => "post" do |t| %>
-                    <%= t.hidden_field :cell_id, :value => player_cells[0].id %>
-                    <% if player_cells[0].ship %>
-                      <%= t.hidden_field :ship, :value => false %>
-                    <% else %>
-                      <%= t.hidden_field :ship, :value => true %>
-                    <% end %>
-                    <%= image_submit_tag "SHIP.png", :id => "submit" %>
-                  <% end %>
-                  <!-- IF SHIP IS PRESENT -->
-                <%else%>
-                  <!-- IF SHIP IS NOT PRESENT -->
-                  <%= form_for player_cells, :url => board_ships_url(@board), :method => "post" do |t| %>
-                    <%= t.hidden_field :cell_id, :value => player_cells[0].id %>
-                    <% if player_cells[0].ship %>
-                      <%= t.hidden_field :ship, :value => false %>
-                    <% else %>
-                      <%= t.hidden_field :ship, :value => true %>
-                    <% end %>
-                    <%= image_submit_tag "OPENWATER.png", :id => "submit" %>
-                  <% end %>
-                  <!-- IF SHIP IS NOT PRESENT -->
+          <h4>PLAYER 1 place your ships:</h4>
+          <table class="table table-2">
+            <% data_x = 1 %>
+            <% data_y = 1 %>
+            <thead >
+              <tr>
+                <% letters = '@' %>
+                <th scope="col">X</th>
+                <% 5.times do %> <!-- To change gameboard size -->
+                  <th scope="col"><%=letters.next!%></th>
                 <%end%>
-              </td>
-              <% data_x += 1 %>
-            <% end %>
-          </tr>
-          <% data_x = 1 %>
-          <% data_y += 1 %>
-        <%end%>
-      </table>
+              </tr>
+            </thead>
+            <% 5.times do %> <!-- To change gameboard size -->
+              <tr>
+                <th>
+                  <%= data_y %>
+                </th>
+                <% 5.times do %> <!-- To change gameboard size -->
+                  <td><% player_cells = @cells.select{|element| element.y == data_y}.select{|element| element.x == data_x} %>
+                    <% if player_cells[0].ship %>
+                      <!-- IF SHIP IS PRESENT -->
+                      <%= form_for player_cells, :url => board_ships_url(@board), :method => "post" do |t| %>
+                        <%= t.hidden_field :cell_id, :value => player_cells[0].id %>
+                        <% if player_cells[0].ship %>
+                          <%= t.hidden_field :ship, :value => false %>
+                        <% else %>
+                          <%= t.hidden_field :ship, :value => true %>
+                        <% end %>
+                        <%= image_submit_tag "SHIP.png", :id => "submit" %>
+                      <% end %>
+                      <!-- IF SHIP IS PRESENT -->
+                    <%else%>
+                      <!-- IF SHIP IS NOT PRESENT -->
+                      <%= form_for player_cells, :url => board_ships_url(@board), :method => "post" do |t| %>
+                        <%= t.hidden_field :cell_id, :value => player_cells[0].id %>
+                        <% if player_cells[0].ship %>
+                          <%= t.hidden_field :ship, :value => false %>
+                        <% else %>
+                          <%= t.hidden_field :ship, :value => true %>
+                        <% end %>
+                        <%= image_submit_tag "OPENWATER.png", :id => "submit" %>
+                      <% end %>
+                      <!-- IF SHIP IS NOT PRESENT -->
+                    <%end%>
+                  </td>
+                  <% data_x += 1 %>
+                <% end %>
+              </tr>
+              <% data_x = 1 %>
+              <% data_y += 1 %>
+            <%end%>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-</div>
 <% end %>
