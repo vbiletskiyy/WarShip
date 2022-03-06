@@ -1,8 +1,11 @@
-<div class="jumbotron jumbotron1">
-  <h1>Ahoy,<%=@user.name%></h1>
-</div>
+
+
 <div class="jumbotron jumbotron2">  <!-- DIV FOR ENTIRE PAGE -->
+  <div class="jumbotron jumbotron1">
+    <h1>Ahoy,<%=@user.name%></h1>
+  </div>
   <div class="row">  <!-- DIV FOR ROW 1 -->
+  
     <%if @player_id = @user.id%>
       <div class="col-4">  <!-- DIV FOR COL 1 -->
         <div class="container battleship">  <!-- DIV FOR PLAYER 1 UI -->
@@ -30,7 +33,7 @@
                       <%= image_tag("REDX.png", :class => "bluefishy")%>
                     <%end%>
                     <% if player_cells[0].ship && !player_cells[0].hit %>
-                      <%= image_tag("SHIP.png", :class => "bluefishy")%>
+                      <%= image_tag("https://www.pinclipart.com/picdir/big/12-125066_png-royalty-free-download-battleship-clipart-battle-ship.png", :class => "bluefishy")%>
                     <%end%>
                     <% if !player_cells[0].ship && player_cells[0].hit %>
                       <%= image_tag("BLUEFISH.png", :class => "bluefishy")%>
@@ -61,7 +64,6 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">MoveID</th>
                     <th scope="col">Player#</th>
                     <th scope="col">Y</th>
                     <th scope="col">X</th>
@@ -70,7 +72,6 @@
                 </thead>
                 <%@shots.reverse.each do |move|%>
                   <tr>
-                    <td class="row-dark" scope="row"><%=move.id%></td>
                     <td><%=move.player_id%></td>
                     <td><%=move.y%></td>
                     <td><%=move.x%></td>
