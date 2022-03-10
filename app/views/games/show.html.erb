@@ -2,14 +2,14 @@
 
 <div class="jumbotron jumbotron2">  <!-- DIV FOR ENTIRE PAGE -->
   <div class="jumbotron jumbotron1">
-    <h1>Ahoy,<%=@user.name%></h1>
+    <h1>Ahoy, <%= current_user.name%></h1>
   </div>
   <div class="row">  <!-- DIV FOR ROW 1 -->
   
     <%if @player_id = @user.id%>
       <div class="col-4">  <!-- DIV FOR COL 1 -->
         <div class="container battleship">  <!-- DIV FOR PLAYER 1 UI -->
-          <h4>PLAYER 1's Ocean <%=@user.name%></h4>
+          <h4><%= current_user.name%>`s Ocean </h4>
           <table class="table table-2">  <!-- TABLE FOR PLAYER 1'S GAMEBOARD -->
             <% data_x = 1 %>
             <% data_y = 1 %>
@@ -70,14 +70,7 @@
                     <th scope="col">hit?</th>
                   </tr>
                 </thead>
-                <%@shots.reverse.each do |move|%>
-                  <tr>
-                    <td><%=move.player_id%></td>
-                    <td><%=move.y%></td>
-                    <td><%=move.x%></td>
-                    <td><%=move.hit%></td>
-                  </tr>
-                <%end%>
+
               </table>
             </div>
           </div>
@@ -88,7 +81,7 @@
       </div>
       <div class="col-4">  <!-- DIV FOR COL 2 -->
         <div class="container battleship">  <!-- DIV FOR PLAYER 2 UI -->
-          <h4>PLAYER 2's Ocean (<%= @enemy_name %>)</h4>
+          <h4><%= @enemy_name %>`s Ocean </h4>
           <table class="table table-2">  <!-- TABLE FOR PLAYER 2'S GAMEBOARD -->
             <% data_x = 1 %>
             <% data_y = 1 %>

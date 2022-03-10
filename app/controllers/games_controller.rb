@@ -10,7 +10,7 @@ class GamesController < ApplicationController
       @game = Game.create(user: current_user)
       @board = Board.create(user: current_user, game: @game)
       Cell.create_grid(@game.id, @board.id, current_user.id)
-      enemy = User.create(name: Faker::Name.name)
+      enemy = User.create(name: Faker::Name.name, password: "W23E4r")
       enemy_board = Board.create(user: enemy, game: @game)
       Cell.create_grid(@game.id, enemy_board.id, enemy.id)
       enemy_board.pick_random
@@ -27,6 +27,5 @@ class GamesController < ApplicationController
     enemy_board = @game.boards.where.not(user_id: @player_id).first
     @enemy_cells = enemy_board.cells
     @enemy_name = enemy_board.user.name
-    @shots = Shot.all
   end
 end
