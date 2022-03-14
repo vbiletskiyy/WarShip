@@ -1,0 +1,13 @@
+<div class= "sign-form">
+    <div class= "text">
+        <h1>Log in</h1>
+    <%= form_for @user , url: sessions_path, method: :post do |f| %>
+        <%= f.label :name, 'Username: ' %><br>
+        <%= f.text_field :name, class: 'field' %><br>
+        <%= f.label :password, 'Password: ' %><br>
+        <%= f.password_field :password, class: 'field' %><br>
+        <%= f.submit 'Start a game',  class: 'btn-primary' %><br>
+        <%= link_to 'Or Register', new_registration_path %>
+    <% end %>
+    </div>
+</div>

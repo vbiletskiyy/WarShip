@@ -1,12 +1,15 @@
-<div class="jumbotron jumbotron1">
-  <h1>Ahoy,<%=@user.name%></h1>
-</div>
+
+
 <div class="jumbotron jumbotron2">  <!-- DIV FOR ENTIRE PAGE -->
+  <div class="jumbotron jumbotron1">
+    <h1>Ahoy, <%= current_user.name%></h1>
+  </div>
   <div class="row">  <!-- DIV FOR ROW 1 -->
+  
     <%if @player_id = @user.id%>
       <div class="col-4">  <!-- DIV FOR COL 1 -->
         <div class="container battleship">  <!-- DIV FOR PLAYER 1 UI -->
-          <h4>PLAYER 1's Ocean <%=@user.name%></h4>
+          <h4><%= current_user.name%>`s Ocean </h4>
           <table class="table table-2">  <!-- TABLE FOR PLAYER 1'S GAMEBOARD -->
             <% data_x = 1 %>
             <% data_y = 1 %>
@@ -30,7 +33,7 @@
                       <%= image_tag("REDX.png", :class => "bluefishy")%>
                     <%end%>
                     <% if player_cells[0].ship && !player_cells[0].hit %>
-                      <%= image_tag("SHIP.png", :class => "bluefishy")%>
+                      <%= image_tag("https://www.pinclipart.com/picdir/big/12-125066_png-royalty-free-download-battleship-clipart-battle-ship.png", :class => "bluefishy")%>
                     <%end%>
                     <% if !player_cells[0].ship && player_cells[0].hit %>
                       <%= image_tag("BLUEFISH.png", :class => "bluefishy")%>
@@ -51,9 +54,34 @@
         <!-- DIV FOR PLAYER 1 UI -->
       </div>
       <!-- DIV FOR COL 1 -->
+      <div class="col-1">
+      </div>
+      <div class="col-2">
+        <div class="container history">
+          <div class="moveslist">  <!-- DIV FOR MOVE HISTORY -->
+            <h4>Move History</h4>
+            <div style="height:300px;width:100px #ccc;overflow:auto;">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Player#</th>
+                    <th scope="col">Y</th>
+                    <th scope="col">X</th>
+                    <th scope="col">hit?</th>
+                  </tr>
+                </thead>
+
+              </table>
+            </div>
+          </div>
+          <!-- DIV FOR MOVE HISTORY -->
+        </div>
+      </div>
+      <div class="col-1">
+      </div>
       <div class="col-4">  <!-- DIV FOR COL 2 -->
         <div class="container battleship">  <!-- DIV FOR PLAYER 2 UI -->
-          <h4>PLAYER 2's Ocean (<%= @enemy_name %>)</h4>
+          <h4><%= @enemy_name %>`s Ocean </h4>
           <table class="table table-2">  <!-- TABLE FOR PLAYER 2'S GAMEBOARD -->
             <% data_x = 1 %>
             <% data_y = 1 %>
@@ -73,10 +101,10 @@
                 </th>
                 <% 5.times do %> <!-- To change gameboard size -->
                   <td><% player_cells = @enemy_cells.select{|element| element.y == data_y}.select{|element| element.x == data_x} %>
-                      <% if !player_cells[0].hit %>
-                    <%= form_for player_cells, :url=> game_shots_url(@game), :method => "post" do |t| %>
-                    <%= t.hidden_field :cell_id, :value => player_cells[0].id %>
-                      <%= t.submit ""%>
+                    <% if !player_cells[0].hit %>
+                      <%= form_for player_cells, :url=> game_shots_url(@game), :method => "post" do |t| %>
+                        <%= t.hidden_field :cell_id, :value => player_cells[0].id %>
+                        <%= t.submit ""%>
                       <%end%>
                     <%end%>
                     <% if player_cells[0].ship && player_cells[0].hit %>
@@ -99,4 +127,3 @@
       </div>
       <!-- DIV FOR COL 2 -->
     <%end%>
-    <!-- ================DIVIDE BETWEEN P1 AND P2 UI SCREENS==================== -->
