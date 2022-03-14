@@ -9,7 +9,7 @@
     <%end%>
   <% if @number.length < 7 %> <!-- Player ships allowed -->
     <div class="jumbotron">
-            <h4>PLAYER 1 place your ships:</h4>
+            <h4><%= current_user.name%> please place your ships:</h4>
             <table class="table table-2">
               <% data_x = 1 %>
               <% data_y = 1 %>
