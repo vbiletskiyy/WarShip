@@ -11,6 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_03_08_172956) do
+
   create_table "boards", force: :cascade do |t|
     t.integer "user_id"
     t.integer "game_id"
