@@ -6,7 +6,7 @@ class Board < ApplicationRecord
   has_many :cells
 
   def pick_random
-    cells
+  cells
     .where(ship: false)
     .order("RANDOM()")
     .limit(7)

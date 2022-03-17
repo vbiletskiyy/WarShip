@@ -27,6 +27,5 @@ class GamesController < ApplicationController
     enemy_board = @game.boards.where.not(user_id: @player_id).first
     @enemy_cells = enemy_board.cells
     @enemy_name = enemy_board.user.name
-    @shots = Shot.all
   end
 end
